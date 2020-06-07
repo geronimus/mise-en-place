@@ -2,7 +2,9 @@
 
 A little mechanism to help process command-line arguments.
 
-## Setting
+## Components:
+
+### geronimus.cli.Setting
 
 Describes an expected parameter, including the name by which it will be recognized, any aliases, potential values, and validation rules.
 
@@ -35,7 +37,7 @@ val help = Setting(
 )
 ```
 
-### Setting Properties
+#### Setting Properties
 
 - __name__ _String_ Required. The parameter's official name. Keep it between 1 and 255 characters.
 - __required__ _Boolean_ Optional. The default is `false`. Determines whether or not a value for this parameter must be supplied in an argument.
@@ -46,7 +48,7 @@ val help = Setting(
 - __options__ _Set[ String ]_ Optional. A set of possible argument values. If any options are defined, and an argument does not match one of them, then it is deemed invalid.
 - __validators__ _Set[ String => Boolean ]_ Optional. A set of validation functions - taking a String and returning a Boolean - which determine whether an argument is deemed valid. If any are defined, an argument must return `true` for all of them, in order to be deemed valid.
 
-## ParamSet
+### geronimus.cli.ParamSet
 
 With our settings defined, we can now define the parameter set.
 
@@ -62,7 +64,7 @@ Assuming that we're inside an object that extends `App`, we can use it to parse 
 val argSet = params.parseArgs( args )
 ```
 
-## ArgSet
+### geronimus.cli.ArgSet
 
 `ParamSet.parseArgs( args : Array[ String ] )` returns a `geronimus.cli.ArgSet`, with methods to access and interrogate the passed-in arguments.
 
@@ -83,7 +85,7 @@ An `ArgSet` has many values and methods for querying its parameters and argument
 - __result( key : String )__ _ArgResult_ Synonym for ___apply___.
 - __resultsLookup__ _Map[ String, ArgResult ]_ You can use it to find an `ArgResult` defined in this `ArgSet`, using uts name, or one of its aliases.
 
-## ArgResult
+### geronimus.cli.ArgResult
 
 The object that an `ArgSet` returns, when you give it the name of a defined (or not defined) parameter (Setting). It is a case class with four properties:
 
@@ -92,5 +94,5 @@ The object that an `ArgSet` returns, when you give it the name of a defined (or 
 - __valid__ _Seq[ String ]_ The arguments found following the parameter's name, or alias, that pass all of the defined validation functions, or that are one of the Setting's allowed options. (You can use both options and validation functions, if you like. If you don't define either, any values are presumed to be valid.) This is a Sequence, rather than a simple value, because it is equally possible to find no values at all, or to find multiple values.
 - __invalid__ _Seq[ String ]_ The arguments found following the parameter's name, or alias, that have failed one of the validation functions, or that aren't one of the defined options.
 
-You can find other values and methods for interacting with `Setting`s, `ParamSet`s, and `ArgSet`s, in the project's generated documentation.
+You can find other values and methods for interacting with `Setting`s, `ParamSet`s, and `ArgSet`s, in the project's generated documentation. (Just run: `sbt doc`)
 
