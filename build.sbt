@@ -1,7 +1,7 @@
 ThisBuild / scalaVersion := "2.13.2"
 ThisBuild / organization := "geronimus"
 ThisBuild / name := "mise-en-place"
-ThisBuild / version := "0.1.0-SNAPSHOT"
+ThisBuild / version := "0.1.0"
 
 val scalatest = "org.scalatest" %% "scalatest" % "3.1.2"
 
