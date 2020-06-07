@@ -1,0 +1,7 @@
+# Editor artifacts
+*.swp
+~$*
+
+# Build artifacts
+target/
+
